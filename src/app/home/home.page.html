@@ -1,20 +1,90 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-toolbar color="tertiary">
     <ion-title>
-      Blank
+        Registrar App
     </ion-title>
-  </ion-toolbar>
-</ion-header>
+</ion-toolbar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="ion-padding ion-text-center">
+
+    <!-- aqui estan los segmentos -->
+    <ion-segment [(ngModel)]="segment" mode="ios">
+
+        <ion-segment-button value="DOCENTE">
+            <ion-label>Docente</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="ALUMNO">
+            <ion-label>Alumno</ion-label>
+        </ion-segment-button>
+
+    </ion-segment>
+
+    <!-- aqui se consulta si el valor de segment es igual a docente, entonces mostrar el contenido -->
+    <div *ngIf="segment === 'DOCENTE'" id="content">
+        <div id="form_">
+
+            <form class="ion-padding ion-text-center" #form="ngForm">
+                <ion-label>Correo Electronico</ion-label><br>
+                <ion-item>
+                    <ion-input class="linea" placeholder="Ingrese su correo" type="email" id="txtCorreo_profesor" name="txtCorreo_prof" [(ngModel)]="correoP">
+                    </ion-input>
+                </ion-item>
+                <br>
+                <ion-label>Contraseña</ion-label><br>
+                <ion-item>
+                    <ion-input class="linea" placeholder="Ingrese su clave" type="password" id="txtPass_profesor" name="txtPass_prof" [(ngModel)]="passP">
+                        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                    </ion-input>
+
+                </ion-item>
+                <br>
+                <ion-button (click)="navegarPage('profesor', form)" id="btn_profesor" class="boton" type="button">
+                    INGRESAR
+                </ion-button>
+            </form>
+
+        </div>
+
+        <!-- imagen -->
+        <div id="form_">
+            <img src="assets/imagenes/profesor.png" alt="">
+        </div>
+    </div>
+    <!-- mismo caso que el anterior -->
+    <div *ngIf="segment === 'ALUMNO'">
+        <div id="form_">
+
+            <form class="ion-padding ion-text-center" #form="ngForm">
+                <ion-label>Correo Electronico</ion-label><br>
+                <ion-item>
+                    <ion-input class="linea" placeholder="Ingrese su correo" type="email" id="txtCorreo_alumno" name="txtCorreo_alum" [(ngModel)]="correoA">
+                    </ion-input>
+                </ion-item>
+                <br>
+                <ion-label>Contraseña</ion-label><br>
+                <ion-item>
+                    <ion-input class="linea" placeholder="Ingrese su clave" type="password" id="txtPass_alumno" name="txtPass_alum" [(ngModel)]="passA">
+                        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                    </ion-input>
+
+                </ion-item>
+                <br>
+                <ion-button (click)="navegarPage('alumno' , form)" id="btn_alumno" class="boton" type="button">
+                    INGRESAR
+                </ion-button>
+            </form>
+
+        </div>
+
+        <!-- imagen -->
+        <div id="form_">
+            <img src="assets/imagenes/alumno.png" alt="">
+        </div>
+    </div>
+
+
+
+
+
 </ion-content>

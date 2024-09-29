@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'lobby-docente',
+    loadChildren: () => import('./lobby-docente/lobby-docente.module').then( m => m.LobbyDocentePageModule)
+  },
+  {
+    path: 'lobby-alumno',
+    loadChildren: () => import('./lobby-alumno/lobby-alumno.module').then( m => m.LobbyAlumnoPageModule)
+  },
 ];
 
 @NgModule({
