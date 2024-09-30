@@ -31,6 +31,17 @@ export class HomePage {
      {
       const correoP = form.value.txtCorreo_prof;
       const passP = form.value.txtPass_prof;
+
+        if(!correoP.includes('@'))
+          {
+              await this.mostrarAlerta('ERROR: el correo ingresado es incorrecto, ya que no contiene un Dominio real.. favor incluir el simbolo @');
+              return;
+          }
+       if(!correoP.includes('.cl') && !correoP.includes('.com'))
+         {
+           await this.mostrarAlerta('ERROR: todo correo electronico debe finalizar con su .cl o .com');
+           return;
+         }
         if(!correoP)
         {
           await this.mostrarAlerta('El campo correo electronico del profesor no puede estar vacio');
@@ -44,7 +55,7 @@ export class HomePage {
 
         if(correoP && passP)
         {
-          this.router.navigate(['/lobby-docente']);
+          this.router.navigate(['/lobby-docente'], {queryParams:{parametro: 'correoP'}});
         }
      }
 
@@ -52,6 +63,17 @@ export class HomePage {
      {
       const correoA = form.value.txtCorreo_alum;
       const passA = form.value.txtPass_alum;
+
+      if(!correoA.includes('@'))
+        {
+            await this.mostrarAlerta('ERROR: el correo ingresado es incorrecto, ya que no contiene un Dominio real.. favor incluir el simbolo @');
+            return;
+        }
+      if(!correoA.includes('.cl') && !correoA.includes('.com'))
+        {
+          await this.mostrarAlerta('ERROR: todo correo electronico debe finalizar con su .cl o .com');
+          return;
+        }
       if(!correoA)
         {
           await this.mostrarAlerta('El campo correo electronico del alumno no puede estar vacio');
@@ -65,7 +87,7 @@ export class HomePage {
 
         if(correoA && passA)
         {
-          this.router.navigate(['/lobby-alumno']);
+          this.router.navigate(['/lobby-alumno'], {queryParams:{parametro: 'correoA'}});
         }
      }
     
