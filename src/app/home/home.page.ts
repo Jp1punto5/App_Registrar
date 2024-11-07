@@ -23,9 +23,6 @@ export class HomePage {
 
   async navegarPage(usuario: string , form: NgForm)
   {
-    // obtengo los valores del formulario 
-
-
      
      if(usuario === 'profesor')
      {
@@ -55,7 +52,7 @@ export class HomePage {
 
         if(correoP && passP)
         {
-          this.router.navigate(['/lobby-docente'], {queryParams:{parametro: 'correoP'}});
+          this.router.navigate(['/lobby-docente'], {queryParams:{parametro: correoP}});
         }
      }
 
@@ -87,7 +84,7 @@ export class HomePage {
 
         if(correoA && passA)
         {
-          this.router.navigate(['/lobby-alumno'], {queryParams:{parametro: 'correoA'}});
+          this.router.navigate(['/lobby-alumno'], {queryParams:{parametro: correoA}});
         }
      }
     

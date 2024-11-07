@@ -13,9 +13,13 @@
         <h1 *ngIf="saludo"> Bienvenido {{saludo}}</h1>
         <h1 *ngIf="!saludo">Bienvenido usuario desconocido</h1>
     </div>
+    <br>
+    <div id="saludo" style="width: 60%; height: auto; margin-left: 20%;">
 
+        <ion-label>Seleccione la sección que desea generar QR de asistencia</ion-label>
 
-
+    </div>
+    <br>
 
     <div id="secciones">
 
@@ -23,7 +27,7 @@
             <!-- primer boton  -->
             <ion-row>
                 <ion-col size="10">
-                    <ion-button type="button" style="border-radius: 15px;" id="btn_">
+                    <ion-button type="button" style="border-radius: 15px;" id="btn_" (click)="navegarQR('calidad')">
                         Calidad de Softwarte
                     </ion-button>
                 </ion-col>
@@ -31,7 +35,7 @@
             <!-- segundo boton -->
             <ion-row>
                 <ion-col size="10">
-                    <ion-button type="button" id="btn_">
+                    <ion-button type="button" id="btn_" (click)="navegarQR('ingles')">
                         Ingles elemental
                     </ion-button>
                 </ion-col>
@@ -39,7 +43,7 @@
             <!-- tercer boton  -->
             <ion-row>
                 <ion-col size="10">
-                    <ion-button type="button" id="btn_">
+                    <ion-button type="button" id="btn_" (click)="navegarQR('apli')">
                         Aplicaciones moviles
                     </ion-button>
                 </ion-col>

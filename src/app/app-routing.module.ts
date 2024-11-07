@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'lobby-alumno',
     loadChildren: () => import('./lobby-alumno/lobby-alumno.module').then( m => m.LobbyAlumnoPageModule)
   },
+  {
+    path: 'generar-qr',
+    loadChildren: () => import('./generar-qr/generar-qr.module').then( m => m.GenerarQRPageModule)
+  },
 ];
 
 @NgModule({
