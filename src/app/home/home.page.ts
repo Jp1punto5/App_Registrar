@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
 
   // segment = 'scan';
@@ -19,7 +21,14 @@ export class HomePage {
   correoA = '';
   passA = '';
 
-  constructor(private router: Router , private alerta: AlertController ) {}
+  constructor( private consumoApi : AuthService,private router: Router , private alerta: AlertController ) {}
+
+
+  ngOnInit(): void {
+    // AQUI PUEDO PONER EL CODIGO QUE SE EJECUTE APENAS CARGUE LA PAGINA
+  }
+
+
 
   async navegarPage(usuario: string , form: NgForm)
   {
@@ -28,7 +37,8 @@ export class HomePage {
      {
       const correoP = form.value.txtCorreo_prof;
       const passP = form.value.txtPass_prof;
-
+      
+ 
         if(!correoP.includes('@'))
           {
               await this.mostrarAlerta('ERROR: el correo ingresado es incorrecto, ya que no contiene un Dominio real.. favor incluir el simbolo @');
@@ -46,14 +56,35 @@ export class HomePage {
         }
         if(!passP)
         {
-          await this.mostrarAlerta('El campo contrasena del profesor no puede estar vacio');
+          await this.mostrarAlerta('El campo contraseña del profesor no puede estar vacio');
           return;
         }
 
-        if(correoP && passP)
-        {
-          this.router.navigate(['/lobby-docente'], {queryParams:{parametro: correoP}});
-        }
+
+        // este valida el correo del profesor
+
+        this.consumoApi.getLogin(correoP,passP).subscribe
+        (
+            data => 
+              { // esto es si es verdadero
+                  console.log("Datos del usuario: " , data);
+                  this.consumoApi.setUserData(data);
+                  if('docente' === this.consumoApi.getUserData().user)
+                  {
+                    this.router.navigate(['/lobby-docente'],{queryParams:{authStatus: this.consumoApi.Validar_user()}});
+                  }
+                  else 
+                  {
+                    this.router.navigate(['/**'],{queryParams:{error:'No tiene acceso: Las credenciales de acceso no son de un Profesor',msj:'401'}});
+                  }
+                  
+              },
+            error =>
+              {
+                 console.error("Error al iniciar sesion> " , error);
+                 this.router.navigate(['/**'], {queryParams:{error:'no tiene permiso para acceder', msj: '401'}});
+              }
+        );
      }
 
      if(usuario === 'alumno')
@@ -82,10 +113,27 @@ export class HomePage {
           return;
         }
 
-        if(correoA && passA)
-        {
-          this.router.navigate(['/lobby-alumno'], {queryParams:{parametro: correoA}});
-        }
+        this.consumoApi.getLogin(correoA,passA).subscribe
+        (
+            data => 
+              { // esto es si es verdadero
+                  console.log("Datos del usuario: " , data);
+                  this.consumoApi.setUserData(data);
+                  if('alumno'===this.consumoApi.getUserData().user)
+                  {
+                    this.router.navigate(['/lobby-alumno'],{queryParams:{authStatus: this.consumoApi.Validar_user()}});
+                  }else
+                  {
+                    this.router.navigate(['/**'],{queryParams:{error:'No tiene acceso: Las credenciales de acceso no son de un Alumno',msj:'401'}});
+                  }
+
+              },
+            error =>
+              {
+                 console.error("Error al iniciar sesion> " , error);
+                 this.router.navigate(['/**'], {queryParams:{error:'no tiene permiso para acceder', msj: '401'}});
+              }
+        );
      }
     
   } // fin funcion de navegacion

@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QrCodeModule } from 'ng-qrcode';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { GenerarQRPage } from './generar-qr.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GenerarQRPageRoutingModule
+    GenerarQRPageRoutingModule,
+    QrCodeModule
   ],
   declarations: [GenerarQRPage]
 })

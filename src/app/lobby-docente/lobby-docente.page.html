@@ -24,31 +24,16 @@
     <div id="secciones">
 
         <ion-grid>
-            <!-- primer boton  -->
+            <!-- genera botones siempre y cuando existan mas cursos -->
+        <div *ngFor="let item of cursos">
             <ion-row>
                 <ion-col size="10">
-                    <ion-button type="button" style="border-radius: 15px;" id="btn_" (click)="navegarQR('calidad')">
-                        Calidad de Softwarte
+                    <ion-button type="button" id="btn_" (click)="navegarQR(item.seccion+'_'+item.nombre)">
+                        {{item.seccion+"_"+item.nombre}}
                     </ion-button>
                 </ion-col>
             </ion-row>
-            <!-- segundo boton -->
-            <ion-row>
-                <ion-col size="10">
-                    <ion-button type="button" id="btn_" (click)="navegarQR('ingles')">
-                        Ingles elemental
-                    </ion-button>
-                </ion-col>
-            </ion-row>
-            <!-- tercer boton  -->
-            <ion-row>
-                <ion-col size="10">
-                    <ion-button type="button" id="btn_" (click)="navegarQR('apli')">
-                        Aplicaciones moviles
-                    </ion-button>
-                </ion-col>
-            </ion-row>
-
+        </div>
         </ion-grid>
 
     </div>

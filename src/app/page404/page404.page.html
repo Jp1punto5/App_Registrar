@@ -1,0 +1,25 @@
+<ion-toolbar color="tertiary">
+    <ion-title>
+        <h3 *ngIf="error">Error: {{error}}</h3>
+        <h3 *ngIf="!error">404</h3>
+       
+    </ion-title>
+        <ion-button (click)="volver()">
+            Volver
+        </ion-button>
+    
+</ion-toolbar>
+<ion-content class="ion-padding ion-text-center" color="medium">
+    <p style="width: 100%; height: auto; color: white;">
+
+        <h4 *ngIf="msj"> msj: {{msj}}</h4>
+        <h4 **ngIf="!msj"> msj: pagina no encotrada</h4>
+    <p>
+    <br>
+
+    <DIV style="width: 100%; height: auto; margin-top: 20%;">
+
+        <img style="border-radius: 12px;" src="assets/imagenes/error_404.jpg" alt="">
+    </DIV>
+
+</ion-content>
