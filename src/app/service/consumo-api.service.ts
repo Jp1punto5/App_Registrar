@@ -19,7 +19,7 @@ export class ConsumoAPIService {
      )
   }
 
-  private apiURL = 'https://1256-181-43-90-154.ngrok-free.app';
+  private apiURL = 'https://1256-181-43-90-154.ngrok-free.app';// este endpoint es un tunel generado con ngrok
   private cursoData : any;
 
 

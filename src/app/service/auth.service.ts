@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
 
-  private apiURL = 'https://1256-181-43-90-154.ngrok-free.app';
+  private apiURL = 'https://1256-181-43-90-154.ngrok-free.app'; // este endpoint es un tunel generado con ngrok
   private userData: any; //Almacena los datos de usuario
 
   private httpOptions =
