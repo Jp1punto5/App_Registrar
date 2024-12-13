@@ -11,17 +11,18 @@
         <h2 *ngIf="saludo">Bienvenido Estudiante {{saludo}}</h2>
         <h2 *ngIf="!saludo">Bienvenido usuario desconocido</h2>
     </div>
-
     <br>
 
     <div id="btn_qr">
         <ion-grid>
             <ion-row>
-                <ion-col size="10">
-                    <ion-button>
-                        Escanear Asitencia-QR
-                    </ion-button>
-                </ion-col>
+                 <ion-col size="12">
+                    <div>
+                        <video id="video" style="width: 100%; height: 8%; border: 1px solid black; border-radius: 12px;"></video>
+                    </div>
+                      <ion-button (click)="startQRScanner()">Iniciar Escáner</ion-button>
+                      <ion-button (click)="stopQRScanner()">Detener Escáner</ion-button>
+                 </ion-col>
             </ion-row>
         </ion-grid>
     </div>

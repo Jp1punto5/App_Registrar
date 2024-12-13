@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
 
-  private apiURL = 'http://127.0.0.1:5000';
+  private apiURL = 'https://1256-181-43-90-154.ngrok-free.app';
   private userData: any; //Almacena los datos de usuario
 
   private httpOptions =

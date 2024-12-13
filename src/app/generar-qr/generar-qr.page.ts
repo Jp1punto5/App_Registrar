@@ -15,6 +15,7 @@ export class GenerarQRPage implements OnInit {
   //  este sera la seccion que se envia a la page de generarQR
   id_curso: string = '';
   curso : string = '';
+  nom_curso : string = '';
   alumnos : any;
   ngOnInit(): void 
   {
@@ -23,8 +24,10 @@ export class GenerarQRPage implements OnInit {
         this.id_curso = params['parametro'];
         const cursos = this.consumoApi.getCursoData();
 
-        this.curso = cursos[this.id_curso].nombre;
+        this.curso = cursos[this.id_curso].nombre+','+cursos[this.id_curso].codigo+','+cursos[this.id_curso].seccion;
         
+        this.nom_curso = cursos[this.id_curso].nombre;
+
         this.alumnos = cursos[this.id_curso].alumnos;
         console.log(this.alumnos);
 

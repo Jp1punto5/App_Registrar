@@ -13,13 +13,13 @@ export class ConsumoAPIService {
     headers : new HttpHeaders 
      (
       {
-        'Content-Type':'application/json'
-        // 'Access-Control-Allow-Origin':'*'
+        'Content-Type':'application/json',
+        //  'Access-Control-Allow-Origin':'*'
       }
      )
   }
 
-  private apiURL = 'http://127.0.0.1:5000';
+  private apiURL = 'https://1256-181-43-90-154.ngrok-free.app';
   private cursoData : any;
 
 
@@ -40,9 +40,21 @@ export class ConsumoAPIService {
   {
 
     const url = `${this.apiURL}/profesores/${id_p}/cursos`;
-    return this.http.get(url,this.httpOptions);
+    console.log(url+'  bandera 1');
+    return this.http.options(url,this.httpOptions);
 
   }
+
+  //metodo para registrar asistencia
+  setAsistencia(codigo_c:string,codigo_s:string,correo_a:string): Observable<any>
+  {
+      const url = `${this.apiURL}/regis_asistencia/${codigo_c}/${codigo_s}/${correo_a}`;
+      console.log(url);
+      return this.http.post(url,this.httpOptions);
+  }
+
+
+
   // guardamos los datos de los cursos
   setCursoData(data:any):void
   {
@@ -59,6 +71,8 @@ export class ConsumoAPIService {
   {
     this.cursoData = null;
   }
+
+
 
 
 
